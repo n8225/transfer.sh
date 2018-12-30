@@ -7,9 +7,9 @@ ADD . /go/src/github.com/dutchcoders/transfer.sh
 # build & install server
 RUN go build -o /go/bin/transfersh github.com/dutchcoders/transfer.sh
 
-FROM golang:1.11-alpine
+FROM scratch
 COPY --from=build /go/bin/transfersh /go/bin/transfersh
 
-ENTRYPOINT ["/go/bin/transfersh", "--listener", ":8080"]
+ENTRYPOINT ["/go/bin/transfersh", "--listener", ":9090"]
 
-EXPOSE 8080
+EXPOSE 9090
