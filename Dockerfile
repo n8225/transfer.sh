@@ -5,7 +5,7 @@ LABEL maintainer="Remco Verhoef <remco@dutchcoders.io>"
 ADD . /go/src/github.com/dutchcoders/transfer.sh
 
 # build & install server
-RUN go build -o /go/bin/transfersh github.com/dutchcoders/transfer.sh
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags="-w -s" -o /go/bin/transfersh github.com/dutchcoders/transfer.sh
 
 FROM scratch
 COPY --from=build /go/bin/transfersh /go/bin/transfersh
