@@ -1,8 +1,18 @@
+Edited dockerfile to build static and use scratch image for a smaller container(4 mb).  Using local storage behind a proxy works without issues.  Not tested beyond that.
+
 # transfer.sh [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dutchcoders/transfer.sh?utm_source=badge&utm_medium=badge&utm_campaign=&utm_campaign=pr-badge&utm_content=badge) [![Go Report Card](https://goreportcard.com/badge/github.com/dutchcoders/transfer.sh)](https://goreportcard.com/report/github.com/dutchcoders/transfer.sh) [![Docker pulls](https://img.shields.io/docker/pulls/dutchcoders/transfer.sh.svg)](https://hub.docker.com/r/dutchcoders/transfer.sh/) [![Build Status](https://travis-ci.org/dutchcoders/transfer.sh.svg?branch=master)](https://travis-ci.org/dutchcoders/transfer.sh)
 
 Easy and fast file sharing from the command-line. This code contains the server with everything you need to create your own instance.
 
 Transfer.sh currently supports the s3 (Amazon S3), gdrive (Google Drive) providers, and local file system (local).
+
+## Docker
+
+For easy deployment, we've created a Docker container.
+
+```bash
+docker run --publish 9090:9090 dutchcoders/transfer.sh:latest --provider local --basedir /tmp/
+```
 
 ## Usage
 
@@ -148,14 +158,6 @@ go run main.go --provider=local --listener :8080 --temp-path=/tmp/ --basedir=/tm
 
 ```bash
 go build -o transfersh main.go
-```
-
-## Docker
-
-For easy deployment, we've created a Docker container.
-
-```bash
-docker run --publish 8080:8080 dutchcoders/transfer.sh:latest --provider local --basedir /tmp/
 ```
 
 ## Contributions
